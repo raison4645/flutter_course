@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:second_flutter_app/styled_text.dart';
+import 'package:second_flutter_app/random_photo.dart';
 
 const startAlignment = Alignment.topLeft;
 const endAlignment = Alignment.bottomRight;
@@ -7,7 +7,11 @@ const endAlignment = Alignment.bottomRight;
 //Widget is the type declaration
 class GradientContainer extends StatelessWidget {
   //constructor function
-  const GradientContainer({super.key});
+  const GradientContainer(this.color1, this.color2, {super.key});
+
+  // List can still be edit in final
+  final Color color1;
+  final Color color2;
 
   @override // Annotation, not required but recommended to at this
   Widget build(context) {
@@ -15,17 +19,16 @@ class GradientContainer extends StatelessWidget {
     return Container(
       // the const in the constructor means the whole widget is unchangable?
       // if a const widget contains var value, it will throw error
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [
-            Color.fromRGBO(58, 71, 183, 1),
-            Color.fromARGB(255, 45, 7, 98)
-          ],
+          colors: [color1, color2],
           begin: startAlignment,
           end: endAlignment,
         ),
       ),
-      child: const Center(child: StyledText('Hello Zimmermann!')),
+      child: const Center(
+        child: RandomPhoto(),
+      ),
     );
   }
 }
